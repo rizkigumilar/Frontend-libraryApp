@@ -1,0 +1,79 @@
+.Gambar1 {
+    width: 100%;
+    height:300px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    background-color: black;
+  }
+  
+  .book-detail ul {
+    margin: 0;
+    list-style-type: none;
+    position: absolute;
+    z-index: 1000;
+  }
+  
+  .book-detail ul li {
+    padding: 30px 20px;
+    display: inline-block;
+  }
+  
+  .book-detail ul li a, .button {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 550;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0px 0px 2px black;
+    cursor: pointer;
+  }
+  
+  .content {
+    padding: 30px 100px;
+    width: 60%;
+    position: relative;
+  }
+  
+  p.title {
+    margin: 0;
+    font-size: 25pt;
+    font-weight: bold;
+  }
+  
+  p.writer {
+    font-weight: bold
+  }
+  
+  .imageBook {
+    position: absolute;
+    top: -100px;
+    width: 20%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px black;
+    right: -300px;
+  }
+  
+  .back {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px 50px 30px 10px;
+  }
+  .buttonDel{
+      margin-top: 5px;
+  }
+
+  .buttonB{
+  background-color: #88f45d;
+	border: none;
+	color: black;
+	border-radius: 8px;
+	height: 38px;
+	width: 150px;
+  font-size: 15px;
+  font-weight: bold;
+	outline: none;
+	cursor: pointer;
+  float: right;
+  margin-right: -390px;
+  margin-top: 150px;
+  }
+  
