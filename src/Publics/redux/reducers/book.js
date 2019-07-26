@@ -25,7 +25,7 @@ const book = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isFulfilled: true,
-                bookList: action.payload.data
+                bookList: action.payload.data.result
             };
         case 'GET_BOOKID_PENDING':
             return {

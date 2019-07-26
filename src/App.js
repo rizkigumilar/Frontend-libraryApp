@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
-import Home from './Routing/Route';
+import Route from './Routing/Route';
 import store from './Publics/redux/store';
 
 
@@ -12,7 +12,7 @@ class App extends Component {
 
     return (
       <Provider store={store}>
-        <Home />
+        <Route />
       </Provider>
     );
   }

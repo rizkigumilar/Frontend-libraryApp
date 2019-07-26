@@ -4,12 +4,7 @@ import {
 	Modal,
 	ModalHeader,
 	ModalBody,
-	ModalFooter,
-	Form,
-	FormGroup,
-	Label,
-	Col,
-	Input
+	ModalFooter
 } from 'reactstrap';
 import '../Assets/button.css';
 import { postBorrow } from '../Publics/redux/actions/borrow';
@@ -18,6 +13,8 @@ class Borrow extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			id: this.props.id,
+			idNum: localStorage.idNum,
 			modal: false,
 			borrow: [],
 		};
@@ -41,7 +38,7 @@ class Borrow extends Component {
 		const borrowAdd = () => {
 			this.state.borrow.push({
 				idNum: this.state.idNum,
-                idBook: this.state.idBook
+                idBook: this.state.id
 				
 			});
 			add()
@@ -63,38 +60,7 @@ class Borrow extends Component {
 						<b>Add Data</b>
 					</ModalHeader>
 					<ModalBody>
-						<Form>
-							<FormGroup row>
-								<Label sm={3} size="lg">
-									ID KTP
-								</Label>
-								<Col sm={9}>
-									<Input
-										type="text"
-										name="title"
-										onChange={(e) => this.setState({ idNum: e.target.value })}
-										id="title"
-										placeholder="ID Number..."
-										bsSize="lg"
-									/>
-								</Col>
-							</FormGroup>
-							<FormGroup row>
-								<Label sm={3} size="lg">
-									ID Book
-								</Label>
-								<Col sm={9}>
-									<Input
-										type="text"
-										name="title"
-										onChange={(e) => this.setState({ idBook: e.target.value })}
-										id="title"
-										placeholder="ID Book..."
-										bsSize="lg"
-									/>
-								</Col>
-							</FormGroup>
-						</Form>
+						<h2>No KTP : {localStorage.idNum}</h2>
 					</ModalBody>
 					<ModalFooter>
 						<a href={"/book"}><button class="buttonSave" onClick={borrowAdd.bind(this)}>

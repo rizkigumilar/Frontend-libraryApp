@@ -30,7 +30,7 @@ class Return extends Component {
         await this.props.dispatch(getBorrow(this.props.idBook));
         this.setState({
             borrow: this.props.borrow
-        });
+		});
         const list = this.state.borrow.borrowList;
         list &&
         list.length > 0 &&
@@ -76,7 +76,7 @@ class Return extends Component {
     }
 
 	render() {
-		let up = async () => {
+		let update = async () => {
             await this.props.dispatch(updateBorrow(this.props.id ,this.state.borrow))
 		};
 		console.log(this.props.borrow)
@@ -110,7 +110,7 @@ class Return extends Component {
 						</Form>
 					</ModalBody>
 					<ModalFooter>
-						<a href="/book"><button class="buttonSave" onClick={up.bind(this)}>
+						<a href="/book"><button class="buttonSave" onClick={update.bind(this)}>
 							OKAY
 						</button></a>
 					</ModalFooter>

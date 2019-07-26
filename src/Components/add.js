@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import swal from 'sweetalert';
 import {
 	Modal,
 	ModalHeader,
@@ -70,7 +71,25 @@ class Add extends Component {
 			console.log(this.state.book);
 		};
 		let add = async () => {
-			await this.props.dispatch(postBook(this.state.book[0]));				
+			await this.props.dispatch(postBook(this.state.book[0]))
+			.then (()=>{
+				swal({
+					title: "Login",
+					text: "Added Successfully",
+					icon: "success",
+					button: "OK"
+				}).then(() => {
+					window.location.href = '/book';
+				  })
+			})
+			.catch(()=>{
+				swal({
+					title: "Login Failed",
+					text: "Added Failed !!!",
+					icon: "warning",
+					buttons: "OK"
+				})
+			})				
 		};
 		return (
 			<div>

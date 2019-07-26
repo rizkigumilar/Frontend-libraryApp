@@ -47,6 +47,26 @@ const user = (state = initialState, action) => {
                 isFulfilled: true,
                 userList: [state.userList, action.payload]
             };
+        case 'GET_USER_PENDING':
+            return {
+                ...state,
+                isLoading: true,
+                isFulfilled: false,
+                isRejected: false
+            };
+        case 'GET_USER_REJECTED':
+            return {
+                ...state,
+                isLoading: false,
+                isRejected: true
+            };
+        case 'GET_USER_FULFILLED':
+            return {
+                ...state,
+                isLoading: false,
+                isFulfilled: true,
+                userList: action.payload.data.result
+            };
 
         default:
             return state;

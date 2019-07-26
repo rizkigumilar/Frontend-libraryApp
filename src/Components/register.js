@@ -7,6 +7,7 @@ import {
   Button,
 } from 'reactstrap';
 import { register } from '../Publics/redux/actions/user';
+import '../Assets/login.css'
 
 class Register extends Component {
   constructor(props) {
@@ -14,14 +15,6 @@ class Register extends Component {
     this.state = {
       user: [],
     };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
   }
  
 
@@ -30,19 +23,19 @@ class Register extends Component {
       this.state.user.push({
         email:this.state.email,
         fullname: this.state.fullname,
+        idNum: this.state.idNum,
         password: this.state.password
       });
-      add()
-      this.setState((prevState) => ({
-        modal: !prevState.modal
-      }));
-      console.log(this.state.book);
     };
+    add()
+      this.setState((prevState) => ({         
+        modal: !prevState.modal
+      }))             
     let add = async () => {
       await this.props.dispatch(register(this.state.user[0]));
     };
       return (
-        <Container className="App">
+        <Container className="box">
           <h2>Sign Up</h2>
           <Form className="form">
             <Col>
@@ -66,6 +59,18 @@ class Register extends Component {
                   onChange={(e) => this.setState({ fullname: e.target.value })}
                   id="exampleEmail"
                   placeholder="your name..."
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>Id Number</Label>
+                <Input
+                  type="text"
+                  name="Id Number"
+                  onChange={(e) => this.setState({ idNum: e.target.value })}
+                  id="Id Number"
+                  placeholder="Id Number"
                 />
               </FormGroup>
             </Col>

@@ -18,7 +18,28 @@ export const postBorrow = (data) => {
 export const getBorrow = () => {
     return {
         type: 'GET_BORROW',
-        payload: axios.get(`http://localhost:3001/borrow`)
+        payload: axios.get(`http://localhost:3001/borrow`,
+        {
+            headers: {
+                "authorization": "x-control-app",
+                "x-access-token": `token: ${localStorage.jwToken}`,
+                "x-control-user": localStorage.userid
+            }
+        })
+    }
+}
+
+export const userBorrow = (idNum) => {
+    return {
+        type: 'USER_BORROW',
+        payload: axios.get(`http://localhost:3001/profile/${idNum}`,
+        {
+            headers: {
+                "authorization": "x-control-app",
+                "x-access-token": `token: ${localStorage.jwToken}`,
+                "x-control-user": localStorage.userid
+            }
+        })
     }
 }
 

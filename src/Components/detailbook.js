@@ -40,17 +40,17 @@ class Book extends Component {
                               <div>
                               <ul>
                                   <li><Link to="/book" className="back">BACK</Link></li>
-                                  {localStorage.status === 0  ?
-                                  (<li className="buttonDel" ><Link to={`/book/${item.idBook}/edit`}>Edit</Link></li>) : ''}
-                                  {localStorage.status === 0 ?
-                                    (<li className="buttonDel" ><Link to={'/book'} onClick={this.delete.bind(this)}>Delete</Link></li>): ''}
+                                  {localStorage.status == 0  ?
+                                  (<li className="buttonDel" ><Link to={`/book/${item.idBook}/edit`}>Edit</Link></li>) : ('')}
+                                  {localStorage.status == 0 ?
+                                    (<li className="buttonDel" ><Link to={'/book'} onClick={this.delete.bind(this)}>Delete</Link></li>): ('')}
                               </ul>
                                   <img className='Gambar1' src={item.image} alt="gambar" />
                                   </div>
                                   <div className="content">
                                   <img className={'imageBook'} src={item.image} alt={item.name} />
                                   {localStorage.name != null ?
-                                  (<p>{item.StatusBorrow === 1 ?  <Return id={item.idBook}/>: <Borrow/> }</p>) : ('')}
+                                  (<p>{item.StatusBorrow === 1 ?  <Return id={item.idBook}/>: <Borrow id={item.idBook}/> }</p>) : ('')}
                                       <p className='title'>{(item.name)}</p>
                                       <p className='writer'>by : {(item.writer)}</p>
                                       <p>{item.StatusBorrow === 1 ? <p style={{fontSize:'14px',fontWeight:'bold',backgroundColor:'red',textAlign:'center',borderRadius:'8px',width:'100px',marginTop:'20px', color:'white'}}>Not Available</p> : <p style={{fontSize:'14px',fontWeight:'bold',backgroundColor:'green',textAlign:'center',borderRadius:'8px',width:'100px',marginTop:'20px',color:'white'}}>Available</p>}</p>

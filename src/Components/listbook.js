@@ -13,8 +13,7 @@ class Book extends Component {
     books: [],
   };
   componentDidMount = async () => {
-    let search = ""
-    await this.props.dispatch(getBook(search));
+    await this.props.dispatch(getBook());
     this.setState({
       books: this.props.book,
     });
@@ -31,8 +30,8 @@ class Book extends Component {
       <div className="list-item">  
       <ul>
           {list &&
-            list.result.length > 0 &&
-            list.result.map((item, index) =>  {
+            list.length > 0 &&
+            list.map((item, index) =>  {
                       return (
                           <Link to={`/book/${item.idBook}`} key={index}>
                               <div className="item" id="items" bookid={item.bookid}>
