@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Col, Input } from 'reactstrap';
 import '../Assets/button.css';
+import swal from 'sweetalert';
 import { getBookid } from '../Publics/redux/actions/book';
 import { editBook } from '../Publics/redux/actions/book';
 //import Flex from './'
@@ -66,7 +67,25 @@ class Edit extends Component {
             console.log(this.state.tmp);
         };
         let edit = async () => {
-            await this.props.dispatch(editBook((this.state.tmp[0]), this.state.books.idBook));
+            await this.props.dispatch(editBook((this.state.tmp[0]), this.state.books.idBook))
+            .then (()=>{
+				swal({
+					title: "Success",
+					text: "Edit Successfully",
+					icon: "success",
+					button: "OK"
+				}).then(() => {
+					window.location.href = '/book';
+				  })
+			})
+			.catch(()=>{
+				swal({
+					title: "Failed",
+					text: "Edit Failed !!!",
+					icon: "warning",
+					buttons: "OK"
+				})
+			})
         };
         const { books } = this.state;
         const list = books.bookList;

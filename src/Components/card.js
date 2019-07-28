@@ -9,7 +9,8 @@ const Cards = ({ list }) => {
 
     return (
         <div className=''>
-        <Add/>
+        {localStorage.status == 0 ?
+            (<Add/>) : ('')}
             <div className="list-item">
                 <ul>
                     {list &&

@@ -38,8 +38,8 @@ class Borrow extends Component {
 		const borrowAdd = () => {
 			this.state.borrow.push({
 				idNum: this.state.idNum,
-                idBook: this.state.id
-				
+				idBook: this.state.id
+
 			});
 			add()
 			this.setState((prevState) => ({
@@ -48,8 +48,14 @@ class Borrow extends Component {
 			console.log(this.state.book);
 		};
 		let add = async () => {
-			await this.props.dispatch(postBorrow(this.state.borrow[0]));				
+			await this.props.dispatch(postBorrow(this.state.borrow[0]));
 		};
+		var today = new Date();
+		var dd = String(today.getDate() + 3).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0');
+		var yyyy = today.getFullYear();
+
+		const date = dd + ' - ' + mm + ' - ' + yyyy;
 		return (
 			<div>
 				<button class="buttonB" onClick={this.toggle}>
@@ -57,14 +63,16 @@ class Borrow extends Component {
 				</button>
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} modal-lg">
 					<ModalHeader toggle={this.toggle}>
-						<b>Add Data</b>
+						<b>Borrow </b>
 					</ModalHeader>
 					<ModalBody>
-						<h2>No KTP : {localStorage.idNum}</h2>
+						<h2>Name : {localStorage.name}</h2>
+						<h2>Id Number : {localStorage.idNum}</h2>
+						<h2>Return Date : {date} </h2>
 					</ModalBody>
 					<ModalFooter>
 						<a href={"/book"}><button class="buttonSave" onClick={borrowAdd.bind(this)}>
-							SAVE
+							CONFIRM
 						</button></a>
 					</ModalFooter>
 				</Modal>
@@ -73,8 +81,8 @@ class Borrow extends Component {
 	}
 }
 const mapStateToProps = state => {
-    return {
-        borrow: state.borrow
-    };
+	return {
+		borrow: state.borrow
+	};
 };
-export default connect(mapStateToProps) (Borrow);
+export default connect(mapStateToProps)(Borrow);

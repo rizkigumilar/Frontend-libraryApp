@@ -87,7 +87,7 @@ class Return extends Component {
 				</button>
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} modal-lg">
 					<ModalHeader toggle={this.toggle}>
-						<b>Data</b>
+						<b>Return Book</b>
 					</ModalHeader>
 					<ModalBody>
 						<Form>

@@ -74,7 +74,7 @@ class Add extends Component {
 			await this.props.dispatch(postBook(this.state.book[0]))
 			.then (()=>{
 				swal({
-					title: "Login",
+					title: "Success",
 					text: "Added Successfully",
 					icon: "success",
 					button: "OK"
@@ -84,7 +84,7 @@ class Add extends Component {
 			})
 			.catch(()=>{
 				swal({
-					title: "Login Failed",
+					title: "Failed",
 					text: "Added Failed !!!",
 					icon: "warning",
 					buttons: "OK"

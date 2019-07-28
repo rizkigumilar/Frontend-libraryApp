@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import swal from 'sweetalert';
 import {
   Container, Col, Form,
   FormGroup, Label, Input,
@@ -26,13 +27,32 @@ class Register extends Component {
         idNum: this.state.idNum,
         password: this.state.password
       });
-    };
-    add()
-      this.setState((prevState) => ({         
+      add()
+      this.setState((prevState) => ({
         modal: !prevState.modal
-      }))             
-    let add = async () => {
-      await this.props.dispatch(register(this.state.user[0]));
+      }))}
+      let add = async () => {
+      await this.props.dispatch(register(this.state.user[0]))
+      .then (()=>{
+        swal({
+            title: "Register",
+            text: "Register Success",
+            icon: "success",
+            button: "OK"
+        }).then(() => {
+            window.location.href = '/user/login';
+          })
+    })
+    .catch(()=>{
+      swal({
+          title: "Register Failed",
+          text: "Email is already taken !!!",
+          icon: "warning",
+          buttons: "OK"
+      }).then(() => {
+        window.location.href = '/user/register';
+      })
+  })
     };
       return (
         <Container className="box">
@@ -86,7 +106,7 @@ class Register extends Component {
                 />
               </FormGroup>
             </Col>
-            <Button class="buttonSave" onClick={userAdd.bind(this)} href="/user/login" style={{backgroundColor:'rgb(43, 195, 206)'}}>Sign Up</Button>
+            <Button class="buttonSave" onClick={userAdd.bind(this)} style={{backgroundColor:'rgb(43, 195, 206)'}}>Sign Up</Button>
             <br />
             <span>Already registered <Link to="/user/login">go to login</Link></span>
           </Form>

@@ -21,7 +21,7 @@ class Book extends Component {
     });
   };
   delete = async ()=>{
-		await this.props.dispatch(deleteBook(this.props.match.params.idBook));		
+		await this.props.dispatch(deleteBook(this.props.match.params.idBook))		
 	}
 
   
