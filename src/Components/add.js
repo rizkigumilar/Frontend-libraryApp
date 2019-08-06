@@ -38,6 +38,12 @@ class Add extends Component {
 			dropdownOpen: !prevState.dropdownOpen
 		}));
 	}
+	onChangeFile = (e) => {
+		console.log(e.target.files[0])
+		this.setState({
+			file: e.target.files[0],
+		})
+	}
 
 	render() {
 		const bookAdd = () => {
@@ -55,41 +61,49 @@ class Add extends Component {
 				default:
 					idCat = 1;
 			}
-			this.state.book.push({
-				name: this.state.name,
-				writer: this.state.writer,
-                description: this.state.description,
-                idCat,
-                location: this.state.location,
-				image: this.state.image,
-				
-			});
-			add()
+			const dataFile = new FormData()
+			dataFile.append('image', this.state.file)
+			dataFile.append('name', this.state.name)
+			dataFile.append('writer', this.state.writer)
+			dataFile.append('location', this.state.location)
+			dataFile.append('description', this.state.description)
+			dataFile.append('idCat', idCat)
+			// this.state.book.push({
+			// 	name: this.state.name,
+			// 	writer: this.state.writer,
+			//     description: this.state.description,
+			//     idCat,
+			//     location: this.state.location,
+			// 	image: this.state.image,
+
+			// });
+			add(dataFile)
 			this.setState((prevState) => ({
 				modal: !prevState.modal
 			}));
 			console.log(this.state.book);
 		};
-		let add = async () => {
-			await this.props.dispatch(postBook(this.state.book[0]))
-			.then (()=>{
+		let add = async (data) => {
+			await this.props.dispatch(postBook(data)).then(() => {
 				swal({
-					title: "Success",
-					text: "Added Successfully",
+					title: "Succes",
+					text: "Add Success !!",
 					icon: "success",
 					button: "OK"
 				}).then(() => {
 					window.location.href = '/book';
-				  })
-			})
-			.catch(()=>{
-				swal({
-					title: "Failed",
-					text: "Added Failed !!!",
-					icon: "warning",
-					buttons: "OK"
 				})
-			})				
+			})
+				.catch(() => {
+					swal({
+						title: "Add Failed",
+						text: "Book Is Avalaible",
+						icon: "warning",
+						buttons: "OK"
+					}).then(() => {
+						window.location.href = '/book';
+					})
+				})
 		};
 		return (
 			<div>
@@ -138,9 +152,9 @@ class Add extends Component {
 								</Label>
 								<Col sm={9}>
 									<Input
-										type="text"
+										type="file"
 										name="title"
-										onChange={(e) => this.setState({ image: e.target.value })}
+										onChange={this.onChangeFile}
 										id="title"
 										placeholder="Image..."
 										bsSize="lg"
@@ -194,9 +208,9 @@ class Add extends Component {
 						</Form>
 					</ModalBody>
 					<ModalFooter>
-						<a href={"/book"}><button class="buttonSave" onClick={bookAdd.bind(this)}>
+						<button class="buttonSave" onClick={bookAdd.bind(this)}>
 							SAVE
-						</button></a>
+						</button>
 					</ModalFooter>
 				</Modal>
 			</div>
@@ -204,8 +218,8 @@ class Add extends Component {
 	}
 }
 const mapStateToProps = state => {
-    return {
-        book: state.book
-    };
+	return {
+		book: state.book
+	};
 };
-export default connect(mapStateToProps) (Add);
+export default connect(mapStateToProps)(Add);

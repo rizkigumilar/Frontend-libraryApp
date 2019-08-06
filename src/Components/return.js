@@ -19,65 +19,66 @@ class Return extends Component {
 		super(props);
 		this.state = {
 			modal: false,
-            borrow: [],
-            id: this.props.idBook
+			borrow: [],
+			id: this.props.idBook
 		};
 
 		this.toggle = this.toggle.bind(this);
-    }
-    
-    componentDidMount = async() => {
-        await this.props.dispatch(getBorrow(this.props.idBook));
-        this.setState({
-            borrow: this.props.borrow
+	}
+
+	componentDidMount = async () => {
+		await this.props.dispatch(getBorrow(this.props.idBook));
+		this.setState({
+			borrow: this.props.borrow
 		});
-        const list = this.state.borrow.borrowList;
-        list &&
-        list.length > 0 &&
-        list.map(item => {
-            return this.setState({
-                borrow: this.convert(item.MaksPinjam),
-                id : item.idBook
-            });
-        });
-    }
+		const list = this.state.borrow.borrowList;
+		list &&
+			list.length > 0 &&
+			list.map(item => {
+				return this.setState({
+					borrow: this.convert(item.MaksPinjam),
+					id: item.idBook
+				});
+			});
+	}
 
 	toggle() {
 		this.setState({
 			modal: !this.state.modal
 		});
 	}
-    
-    changeHandle = (e) => {
-        const name = e.currentTarget.name;
-        let val = e.currentTarget.value;
-        this.state.borrow[name] = val;
-        this.setState({borrow: this.state.borrow})
-    };
 
-    convert = (date) => {
-        let result = 0;
+	changeHandle = (e) => {
+		const name = e.currentTarget.name;
+		let val = e.currentTarget.value;
+		// eslint-disable-next-line react/no-direct-mutation-state
+		this.state.borrow[name] = val;
+		this.setState({ borrow: this.state.borrow })
+	};
+
+	convert = (date) => {
+		let result = 0;
 		let data = Date.parse(date);
 		let newDate = new Date(data);
 		let day = newDate.getDate();
-        let month = newDate.getMonth();
-        let newData = new Date();
+		let month = newDate.getMonth();
+		let newData = new Date();
 		let newDay = newData.getDate();
-        let newMonth = newData.getMonth();
-        if (month === newMonth){
-            if(day >= newDay){
-                result = 0
-            }
-            else{
-                result = ((newDay - day)*2000)
-            }
+		let newMonth = newData.getMonth();
+		if (month === newMonth) {
+			if (day >= newDay) {
+				result = 0
+			}
+			else {
+				result = ((newDay - day) * 2000)
+			}
 		}
-        return result;
-    }
+		return result;
+	}
 
 	render() {
 		let update = async () => {
-            await this.props.dispatch(updateBorrow(this.props.id ,this.state.borrow))
+			await this.props.dispatch(updateBorrow(this.props.id, this.state.borrow))
 		};
 		console.log(this.props.borrow)
 		return (
@@ -103,7 +104,7 @@ class Return extends Component {
 										placeholder="Penalty..."
 										bsSize="lg"
 										value={this.state.borrow}
-                                        onChange={this.changeHandle}
+										onChange={this.changeHandle}
 									/>
 								</Col>
 							</FormGroup>
@@ -117,11 +118,11 @@ class Return extends Component {
 				</Modal>
 			</div>
 		);
-		}
+	}
 }
 const mapStateToProps = state => {
-    return {
-        borrow: state.borrow
-    };
+	return {
+		borrow: state.borrow
+	};
 };
-export default connect(mapStateToProps) (Return);
+export default connect(mapStateToProps)(Return);

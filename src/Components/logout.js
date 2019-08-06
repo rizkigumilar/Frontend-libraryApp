@@ -25,4 +25,4 @@ const mapStateToProps = state => {
         book: state.book
     };
 };
-export default connect(mapStateToProps)(Logout);
+export default connect(mapStateToProps)(Logout);    
