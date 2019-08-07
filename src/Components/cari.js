@@ -3,23 +3,57 @@ import { connect } from 'react-redux';
 import '../Assets/cari.css';
 import Search from './search';
 import { getBook } from '../Publics/redux/actions/book';
+import { getPagination } from '../Publics/redux/actions/page';
+
 
 class Cari extends Component {
     state = {
         book: [],
+        page: [],
+        numPage: 1,
+        sumPage: ''
+
     };
-    componentDidMount = async () => {
+    componentDidMount = () => {
+        this.makeRequest()
+    }
+    makeRequest = async () => {
+        const numPage = this.state.numPage;
+        await this.props.dispatch(getPagination(numPage));
+        this.setState({
+            page: this.props.page,
+        });
         await this.props.dispatch(getBook());
         this.setState({
-            book: this.props.book,
+            sumPage: this.props.book.bookList.length
         });
     };
 
+    next = () => {
+        this.setState({
+            numPage: this.state.numPage + 1,
+        }, () => {
+            this.makeRequest()
+        })
+    }
+    prev = () => {
+        this.setState({
+            numPage: this.state.numPage - 1,
+        }, () => {
+            this.makeRequest()
+        })
+    }
+
+
     render() {
+        console.log(this.state.sumPage)
+        console.log(this.state.page)
+        console.log(this.state.book)
+
         return (
             <div className='atas'>
                 <div>
-                    <Search data={this.state.book.bookList} />
+                    <Search data={this.state.page.pageList} next={this.next} prev={this.prev} sumPage={this.sumPage}/>
                 </div>
             </div>
         )
@@ -28,7 +62,8 @@ class Cari extends Component {
 
 const mapStateToProps = state => {
     return {
-        book: state.book,
+        page: state.page,
+        book: state.book
     };
 };
 

@@ -107,11 +107,7 @@ const book = (state = initialState, action) => {
                 isFulfilled: true,
                 bookList: [state.bookList, action.payload.data[0]]
             };
-        case 'PAGE_LIST':
-            return {
-              ...state,
-              books: action.dataPage.result
-            }
+
         default:
             return state;
     }

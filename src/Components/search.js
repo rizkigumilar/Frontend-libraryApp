@@ -26,9 +26,11 @@ class Search extends Component {
 
 	get renderBooks() {
 		let book = <Card list={this.props.data} />
-		if (this.state.book) {
+
+		if (this.state.value != '') {
 			book = <Card list={this.state.book} />;
-			console.log(this.props.data)
+		} else {
+			book = <Card list={this.props.data} />
 		}
 		return book;
 
@@ -36,12 +38,61 @@ class Search extends Component {
 
 
 	render() {
+		console.log(this.props.data)
+		const sum = Math.ceil(this.props.sumPage / 8)
+		console.log(sum)
 		return (
 			<div>
 				<center>
 					<input className="search" placeholder="Search Book ..." value={this.state.value}
 						onChange={e => this.onChangeHandler(e)} />
 					{this.renderBooks}
+					<div className='button-next'>
+						{this.state.page == 1 ?
+							(<button
+								style={{
+									color: 'white',
+									backgroundColor: 'rgb(43, 195, 206)',
+									marginRight: '10px',
+									marginBottom: '30px',
+									width: '100px'
+								}}
+								onClick={this.props.prev}
+								disabled>Prev
+                        </button>) :
+							(<button
+								style={{
+									color: 'white',
+									backgroundColor: 'rgb(43, 195, 206)',
+									marginRight: '10px',
+									marginBottom: '30px',
+									width: '100px'
+								}}
+								onClick={this.props.prev}>Prev</button>)}
+
+						{this.state.page == sum ?
+							(<button
+								style={{
+									color: 'white',
+									backgroundColor: 'rgb(43, 195, 206)',
+									marginRight: '10px',
+									marginBottom: '30px',
+									width: '100px'
+								}}
+								onClick={this.props.next}
+								disabled>Next
+                            </button>) :
+							(<button
+								style={{
+									color: 'white',
+									backgroundColor: 'rgb(43, 195, 206)',
+									marginRight: '10px',
+									marginBottom: '30px',
+									width: '100px'
+								}}
+								onClick={this.props.next}>Next
+                            </button>)}
+					</div>
 				</center>
 			</div>
 		);

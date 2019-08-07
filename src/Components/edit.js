@@ -68,24 +68,24 @@ class Edit extends Component {
         };
         let edit = async () => {
             await this.props.dispatch(editBook((this.state.tmp[0]), this.state.books.idBook))
-            .then (()=>{
-				swal({
-					title: "Success",
-					text: "Edit Successfully",
-					icon: "success",
-					button: "OK"
-				}).then(() => {
-					window.location.href = '/book';
-				  })
-			})
-			.catch(()=>{
-				swal({
-					title: "Failed",
-					text: "Edit Failed !!!",
-					icon: "warning",
-					buttons: "OK"
-				})
-			})
+                .then(() => {
+                    swal({
+                        title: "Success",
+                        text: "Edit Successfully",
+                        icon: "success",
+                        button: "OK"
+                    }).then(() => {
+                        window.location.href = '/book';
+                    })
+                })
+                .catch(() => {
+                    swal({
+                        title: "Failed",
+                        text: "Edit Failed !!!",
+                        icon: "warning",
+                        buttons: "OK"
+                    })
+                })
         };
         const { books } = this.state;
         const list = books.bookList;

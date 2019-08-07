@@ -1,71 +1,71 @@
 .list {
-    position: absolute;
-  }
-  
-  .add {
-    padding: 12px 30px;
-    background-color: rgb(43, 195, 206);
-    border: 0;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 12pt;
-    color: white;
-    outline: none;
-    float: right;
-    font-weight: bold;
-    margin-right: 100px;
-    margin-top: -50px;
-  }
-  
-  .add:active {
-    background-color: rgb(43, 195, 206)
-  }
-  
-  .list-item {
-    margin-top: 100px;
-    width: 75%;
-    position: relative;
-    left: 43%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .item {
-    width: 200px;
-    height: 300px;
-    box-shadow: 0px 0px 10px rgb(2, 3, 59);
-    border-radius: 10px;
-    float: left;
-    margin: 5px 20px;
-    cursor: pointer;
-    outline: none;
-    margin-bottom: 50px;
-    box-sizing: border-box;
-    background-color: rgb(43, 195, 206)
-  }
-  
-  .item img {
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    background: black;
-    object-fit: cover;
-    object-position: 50% 50%;
-  }
-  
-  .item div {
-    width: 100%;
-    padding: 0px 10px;
-    box-sizing: border-box;
-  }
-  
-  .item p {
-    margin: 0;
-    width: 100%;
-    font-size: 15pt;
-    color: white
-  }
-  
+  position: absolute;
+}
+
+.add {
+  padding: 12px 30px;
+  background-color: rgb(43, 195, 206);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12pt;
+  color: white;
+  outline: none;
+  float: right;
+  font-weight: bold;
+  margin-right: 100px;
+  margin-top: -50px;
+}
+
+.add:active {
+  background-color: rgb(43, 195, 206)
+}
+
+.list-item {
+  margin-top: 100px;
+  width: 75%;
+  position: relative;
+  left: 43%;
+  margin-right: 100px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  width: 200px;
+  height: 300px;
+  box-shadow: 0px 0px 10px rgb(2, 3, 59);
+  border-radius: 10px;
+  float: left;
+  margin: 5px 20px;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 50px;
+  box-sizing: border-box;
+  background-color: rgb(43, 195, 206)
+}
+
+.item img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  background: black;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.item div {
+  width: 100%;
+  padding: 0px 10px;
+  box-sizing: border-box;
+}
+
+.item p {
+  margin: 0;
+  width: 100%;
+  font-size: 15pt;
+  color: white
+}

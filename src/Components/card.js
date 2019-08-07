@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import '../Assets/listbook.css';
 import { Link } from 'react-router-dom';
 import Add from './add';
+import { getPagination, getBook } from '../Publics/redux/actions/book';
 
 
 const Cards = ({ list }) => {
-    
+
 
     return (
         <div className=''>
-        {localStorage.status == 0 ?
-            (<Add/>) : ('')}
+            {localStorage.status == 0 ?
+                (<Add />) : ('')}
             <div className="list-item">
                 <ul>
                     {list &&
