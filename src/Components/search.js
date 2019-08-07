@@ -38,9 +38,9 @@ class Search extends Component {
 
 
 	render() {
-		console.log(this.props.data)
 		const sum = Math.ceil(this.props.sumPage / 8)
 		console.log(sum)
+		console.log(this.props.numPage)
 		return (
 			<div>
 				<center>
@@ -48,7 +48,7 @@ class Search extends Component {
 						onChange={e => this.onChangeHandler(e)} />
 					{this.renderBooks}
 					<div className='button-next'>
-						{this.state.page == 1 ?
+						{this.props.numPage == 1 ?
 							(<button
 								style={{
 									color: 'white',
@@ -70,7 +70,7 @@ class Search extends Component {
 								}}
 								onClick={this.props.prev}>Prev</button>)}
 
-						{this.state.page == sum ?
+						{this.props.numPage == sum ?
 							(<button
 								style={{
 									color: 'white',

@@ -53,7 +53,7 @@ class Cari extends Component {
         return (
             <div className='atas'>
                 <div>
-                    <Search data={this.state.page.pageList} next={this.next} prev={this.prev} sumPage={this.sumPage}/>
+                    <Search data={this.state.page.pageList} next={this.next} prev={this.prev} sumPage={this.state.sumPage} numPage={this.state.numPage} />
                 </div>
             </div>
         )
