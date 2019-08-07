@@ -33,9 +33,9 @@ class Navbar extends Component {
               </DropdownToggle>
               <DropdownMenu>
                 <Link to="/user/logout"><DropdownItem>Logout</DropdownItem></Link>
-                {localStorage.status === 0 ?
+                {localStorage.status == 0 ?
                   (<Link to="/user/member"><DropdownItem>Member List</DropdownItem></Link>) : ('')}
-                {localStorage.status === 0 ?
+                {localStorage.status == 0 ?
                   (<Link to="/user/history"><DropdownItem>Loan History List</DropdownItem></Link>) : (<Link to={`/profile/${localStorage.idNum}`}><DropdownItem>profile</DropdownItem></Link>)}
               </DropdownMenu>
             </ButtonDropdown>) :
