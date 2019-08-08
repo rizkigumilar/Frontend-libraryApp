@@ -6,6 +6,7 @@ import {
 	ModalBody,
 	ModalFooter
 } from 'reactstrap';
+import swal from 'sweetalert'
 import '../Assets/button.css';
 import { postBorrow } from '../Publics/redux/actions/borrow';
 
@@ -33,23 +34,34 @@ class Borrow extends Component {
 			dropdownOpen: !prevState.dropdownOpen
 		}));
 	}
+	borrowAdd = () => {
+		this.state.borrow.push({
+			idNum: this.state.idNum,
+			idBook: this.state.id
+
+		});
+		this.add()
+		this.setState((prevState) => ({
+			modal: !prevState.modal
+		}));
+		console.log(this.state.book);
+	};
+	add = async () => {
+		await this.props.dispatch(postBorrow(this.state.borrow[0]))
+			.then(() => {
+				swal({
+					title: "Borrow",
+					text: "Borrow Success",
+					icon: "success",
+					button: "OK"
+				}).then(() => {
+					window.location.href = '/book';
+				})
+			})
+	};
 
 	render() {
-		const borrowAdd = () => {
-			this.state.borrow.push({
-				idNum: this.state.idNum,
-				idBook: this.state.id
 
-			});
-			add()
-			this.setState((prevState) => ({
-				modal: !prevState.modal
-			}));
-			console.log(this.state.book);
-		};
-		let add = async () => {
-			await this.props.dispatch(postBorrow(this.state.borrow[0]));
-		};
 		var today = new Date();
 		var dd = String(today.getDate() + 3).padStart(2, '0');
 		var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -71,9 +83,9 @@ class Borrow extends Component {
 						<h2>Return Date : {date} </h2>
 					</ModalBody>
 					<ModalFooter>
-						<a href={"/book"}><button class="buttonSave" onClick={borrowAdd.bind(this)}>
+						<button class="buttonSave" onClick={this.borrowAdd.bind(this)}>
 							CONFIRM
-						</button></a>
+						</button>
 					</ModalFooter>
 				</Modal>
 			</div>
