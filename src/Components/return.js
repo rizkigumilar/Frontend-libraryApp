@@ -11,6 +11,7 @@ import {
 	Col,
 	Input
 } from 'reactstrap';
+import swal from 'sweetalert'
 import '../Assets/button.css';
 import { getBorrow, updateBorrow } from '../Publics/redux/actions/borrow';
 
@@ -75,11 +76,21 @@ class Return extends Component {
 		}
 		return result;
 	}
+	update = async () => {
+		await this.props.dispatch(updateBorrow(this.props.id, this.state.borrow))
+			.then(() => {
+				swal({
+					title: "Return",
+					text: "Return Success",
+					icon: "success",
+					button: "OK"
+				}).then(() => {
+					window.location.href = '/user/login';
+				})
+			})
+	};
 
 	render() {
-		let update = async () => {
-			await this.props.dispatch(updateBorrow(this.props.id, this.state.borrow))
-		};
 		console.log(this.props.borrow)
 		return (
 			<div>
@@ -111,9 +122,9 @@ class Return extends Component {
 						</Form>
 					</ModalBody>
 					<ModalFooter>
-						<a href="/book"><button class="buttonSave" onClick={update.bind(this)}>
+						<button class="buttonSave" onClick={this.update.bind(this)}>
 							OKAY
-						</button></a>
+						</button>
 					</ModalFooter>
 				</Modal>
 			</div>
