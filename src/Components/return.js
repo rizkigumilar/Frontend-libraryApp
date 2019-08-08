@@ -85,7 +85,7 @@ class Return extends Component {
 					icon: "success",
 					button: "OK"
 				}).then(() => {
-					window.location.href = '/user/login';
+					window.location.href = '/book';
 				})
 			})
 	};
